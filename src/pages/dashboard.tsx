@@ -64,7 +64,6 @@ const Home: NextPage = () => {
         {errorMessage && (
           <div className="text-red-500 mt-4">{errorMessage}</div>
         )}
-        
       </div>
     </>
   );

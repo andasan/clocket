@@ -1,6 +1,8 @@
-import type { LogOfRecentTaskTimesProps } from "../../types"
+import type { LogOfRecentTaskTimesProps } from "../../types";
 
-const LogOfRecentTaskTimes = ({ recentTaskTimes }: LogOfRecentTaskTimesProps) => {
+const LogOfRecentTaskTimes = ({
+  recentTaskTimes
+}: LogOfRecentTaskTimesProps) => {
   return (
     <div className="mt-8 max-h-56 overflow-y-auto px-8">
       {recentTaskTimes.map((t, i) => (
@@ -12,7 +14,7 @@ const LogOfRecentTaskTimes = ({ recentTaskTimes }: LogOfRecentTaskTimesProps) =>
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default LogOfRecentTaskTimes
+export default LogOfRecentTaskTimes;

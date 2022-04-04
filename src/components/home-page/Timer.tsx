@@ -1,10 +1,10 @@
-import { useContext } from "react"
-import { TasksContext } from "../../contexts/TasksContext"
-import { UserContext } from "../../contexts/UserContext"
-import { formatTime } from "../../utils/formatTime"
-import { harperSaveTaskTime } from "../../utils/harperdb/saveTaskTime"
-import Button from "../Button"
-import type { TimerProps, TimerBtnProps } from "../../types"
+import { useContext } from "react";
+import { TasksContext } from "../../contexts/TasksContext";
+import { UserContext } from "../../contexts/UserContext";
+import { formatTime } from "../../utils/formatTime";
+import { harperSaveTaskTime } from "../../utils/harperdb/saveTaskTime";
+import Button from "../Button";
+import type { TimerProps, TimerBtnProps } from "../../types";
 
 export const Timer: React.FC<TimerProps> = ({
   seconds,
@@ -15,51 +15,51 @@ export const Timer: React.FC<TimerProps> = ({
   setErrorMessage,
   selectedTaskId,
   selectedTaskName,
-  setRecentTaskTimes,
+  setRecentTaskTimes
 }) => {
-  const { tasks, getAndSetTasks } = useContext(TasksContext)
-  const { username } = useContext(UserContext)
+  const { tasks, getAndSetTasks } = useContext(TasksContext);
+  const { username } = useContext(UserContext);
 
-  const { formattedHours, formattedMins, formattedSecs } = formatTime(seconds)
+  const { formattedHours, formattedMins, formattedSecs } = formatTime(seconds);
 
   const handleStartTimer = () => {
-    setErrorMessage("")
+    setErrorMessage("");
     if (selectedTaskId == "") {
-      setErrorMessage("Please select a task")
+      setErrorMessage("Please select a task");
     } else {
-      startTimer()
+      startTimer();
     }
-  }
+  };
 
   const handleLogTime = async () => {
-    pauseTimer()
-    const prevTaskSeconds = getTaskTimeFromId(selectedTaskId)
-    const newTaskSeconds = prevTaskSeconds + seconds
+    pauseTimer();
+    const prevTaskSeconds = getTaskTimeFromId(selectedTaskId);
+    const newTaskSeconds = prevTaskSeconds + seconds;
     const { response, result } = await harperSaveTaskTime(
       selectedTaskId,
       newTaskSeconds
-    )
+    );
     if (response.status === 200) {
-      getAndSetTasks(username)
-      setSeconds(0)
-      setRecentTaskTimes(prev => [
+      getAndSetTasks(username);
+      setSeconds(0);
+      setRecentTaskTimes((prev) => [
         { name: selectedTaskName, seconds: seconds },
-        ...prev,
-      ])
-    } else setErrorMessage("Whoops, something went wrong :(")
-    console.log({ response, result })
-  }
+        ...prev
+      ]);
+    } else setErrorMessage("Whoops, something went wrong :(");
+    console.log({ response, result });
+  };
 
   const getTaskTimeFromId = (id: string) => {
-    const task = tasks.find(task => task.id === id)
-    if (!task) return 0
-    return task.time_in_seconds
-  }
+    const task = tasks.find((task) => task.id === id);
+    if (!task) return 0;
+    return task.time_in_seconds;
+  };
 
   const handleResetTimer = () => {
-    pauseTimer()
-    setSeconds(0)
-  }
+    pauseTimer();
+    setSeconds(0);
+  };
 
   return (
     <div>
@@ -102,13 +102,13 @@ export const Timer: React.FC<TimerProps> = ({
         </button>
       )}
     </div>
-  )
-}
+  );
+};
 
 export const TimerBtn: React.FC<TimerBtnProps> = ({
   handleClick,
   text,
-  extraClasses,
+  extraClasses
 }) => {
   return (
     <button
@@ -119,5 +119,5 @@ export const TimerBtn: React.FC<TimerBtnProps> = ({
     >
       {text}
     </button>
-  )
-}
+  );
+};

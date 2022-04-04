@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 export interface LogOfRecentTaskTimesProps {
   recentTaskTimes: RecentTaskTimeProps[];
@@ -23,17 +23,16 @@ export interface TimerProps {
   >;
 }
 
-
 export interface TimerBtnProps {
-  handleClick: () => void
-  text: string
-  extraClasses?: string
+  handleClick: () => void;
+  text: string;
+  extraClasses?: string;
 }
 
 export interface TasksContextProps {
-  tasks: TaskProps[]
-  setTasks: React.Dispatch<React.SetStateAction<TaskProps[]>>
-  getAndSetTasks: (username: string) => Promise<void>
+  tasks: TaskProps[];
+  setTasks: React.Dispatch<React.SetStateAction<TaskProps[]>>;
+  getAndSetTasks: (username: string) => Promise<void>;
 }
 
 export interface TaskProps {
@@ -81,7 +80,7 @@ export interface AlertProps {
 }
 
 export interface PageHeadingProps {
-  extraClasses: string
+  extraClasses: string;
 }
 
 export interface NavLinkProps {
@@ -90,6 +89,6 @@ export interface NavLinkProps {
 }
 
 export interface LinkProps {
-  href: string
-  children: React.ReactNode
+  href: string;
+  children: React.ReactNode;
 }

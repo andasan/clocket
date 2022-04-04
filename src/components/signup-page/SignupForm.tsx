@@ -53,7 +53,7 @@ const SignupForm = () => {
   const authenticateUser = (username: string, accessToken: string) => {
     user.setUsername(username);
     localStorage.setItem("access_token", accessToken);
-  };  
+  };
 
   const displayErrors = () => {
     if (errors.length === 0) return;

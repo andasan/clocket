@@ -1,4 +1,4 @@
-import { harperFetch } from "./harperFetch"
+import { harperFetch } from "./harperFetch";
 
 export const harperAddNewTask = async (username: string, taskName: string) => {
   const data = {
@@ -9,11 +9,11 @@ export const harperAddNewTask = async (username: string, taskName: string) => {
       {
         username: username,
         task_name: taskName,
-        time_in_seconds: 0,
-      },
-    ],
-  }
+        time_in_seconds: 0
+      }
+    ]
+  };
 
-  const responseAndResult = await harperFetch(data)
-  return responseAndResult
-}
+  const responseAndResult = await harperFetch(data);
+  return responseAndResult;
+};

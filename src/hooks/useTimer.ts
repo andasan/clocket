@@ -1,33 +1,33 @@
-import { useState, useRef } from "react"
+import { useState, useRef } from "react";
 
 const useTimer = () => {
-  const [isTimerOn, setIsTimerOn] = useState(false)
-  const [seconds, setSeconds] = useState(0)
+  const [isTimerOn, setIsTimerOn] = useState(false);
+  const [seconds, setSeconds] = useState(0);
 
-  const intervalRef = useRef<NodeJS.Timer | null>(null)
+  const intervalRef = useRef<NodeJS.Timer | null>(null);
 
   const startTimer = () => {
-    setIsTimerOn(true)
+    setIsTimerOn(true);
 
     const intervalId = setInterval(() => {
-      setSeconds(prev => prev + 1)
-    }, 1000)
+      setSeconds((prev) => prev + 1);
+    }, 1000);
 
-    intervalRef.current = intervalId
-  }
+    intervalRef.current = intervalId;
+  };
 
   const pauseTimer = () => {
-    setIsTimerOn(false)
-    clearInterval(intervalRef.current as NodeJS.Timeout)
-  }
+    setIsTimerOn(false);
+    clearInterval(intervalRef.current as NodeJS.Timeout);
+  };
 
   return {
     isTimerOn,
     seconds,
     setSeconds,
     startTimer,
-    pauseTimer,
-  }
-}
+    pauseTimer
+  };
+};
 
-export default useTimer
+export default useTimer;

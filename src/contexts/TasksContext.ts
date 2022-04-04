@@ -1,4 +1,4 @@
-import { createContext } from "react"
-import type { TasksContextProps } from "../types"
+import { createContext } from "react";
+import type { TasksContextProps } from "../types";
 
-export const TasksContext = createContext({} as TasksContextProps)
+export const TasksContext = createContext({} as TasksContextProps);

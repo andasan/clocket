@@ -1,11 +1,11 @@
-import { useState, useContext } from "react"
+import { useState, useContext } from "react";
 
-import { harperAddNewTask } from "../../utils/harperdb/addNewTask"
-import { UserContext } from "../../contexts/UserContext"
-import { TasksContext } from "../../contexts/TasksContext"
-import { TaskBarProps } from "../../types"
+import { harperAddNewTask } from "../../utils/harperdb/addNewTask";
+import { UserContext } from "../../contexts/UserContext";
+import { TasksContext } from "../../contexts/TasksContext";
+import { TaskBarProps } from "../../types";
 
-import Button from "../Button"
+import Button from "../Button";
 
 const TaskBar = ({
   selectedTaskId,
@@ -13,50 +13,50 @@ const TaskBar = ({
   setSelectedTaskName,
   setErrorMessage,
   setSeconds,
-  pauseTimer,
+  pauseTimer
 }: TaskBarProps) => {
-  const { username } = useContext(UserContext)
-  const [isUserAddingNewTask, setIsUserAddingNewTask] = useState(false)
-  const [taskInputValue, setTaskInputValue] = useState("")
-  const { tasks, getAndSetTasks } = useContext(TasksContext)
+  const { username } = useContext(UserContext);
+  const [isUserAddingNewTask, setIsUserAddingNewTask] = useState(false);
+  const [taskInputValue, setTaskInputValue] = useState("");
+  const { tasks, getAndSetTasks } = useContext(TasksContext);
 
   const handleChangeTaskInput = (e: { target: HTMLInputElement }) => {
-    setTaskInputValue(e.target.value)
-  }
+    setTaskInputValue(e.target.value);
+  };
 
   const handleSelectTask = (e: { target: HTMLSelectElement }) => {
-    setErrorMessage("")
-    setSelectedTaskId(e.target.value)
-    setSeconds(0)
-    pauseTimer()
-  }
+    setErrorMessage("");
+    setSelectedTaskId(e.target.value);
+    setSeconds(0);
+    pauseTimer();
+  };
 
   const handleClickAddNewTask = () => {
     if (taskInputValue.trim() === "") {
-      setErrorMessage("Type a task!")
-      return
+      setErrorMessage("Type a task!");
+      return;
     }
-    addNewTask()
-    resetAddingNewTask()
-  }
+    addNewTask();
+    resetAddingNewTask();
+  };
 
   const addNewTask = async () => {
     try {
-      const { response } = await harperAddNewTask(username, taskInputValue)
+      const { response } = await harperAddNewTask(username, taskInputValue);
       if (response.status === 200) {
         // Task added to db successfully
-        getAndSetTasks(username)
-      } else setErrorMessage("Whoops, something went wrong")
+        getAndSetTasks(username);
+      } else setErrorMessage("Whoops, something went wrong");
     } catch (err) {
-      console.log(err)
-      setErrorMessage("Whoops, something went wrong")
+      console.log(err);
+      setErrorMessage("Whoops, something went wrong");
     }
-  }
+  };
 
   const resetAddingNewTask = () => {
-    setTaskInputValue("")
-    setIsUserAddingNewTask(false)
-  }
+    setTaskInputValue("");
+    setIsUserAddingNewTask(false);
+  };
 
   return (
     <div>
@@ -94,7 +94,7 @@ const TaskBar = ({
                 -- Select a task --
               </option>
             )}
-            {tasks.map(task => (
+            {tasks.map((task) => (
               <option
                 key={task.id}
                 value={task.id}
@@ -113,7 +113,7 @@ const TaskBar = ({
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default TaskBar
+export default TaskBar;

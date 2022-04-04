@@ -1,39 +1,42 @@
-import { useState, useContext } from "react"
-import type { NextPage } from "next"
+import { useState, useContext } from "react";
+import type { NextPage } from "next";
 import Head from "next/head";
 
-import { UserContext } from "../contexts/UserContext"
-import { TasksContext } from "../contexts/TasksContext"
-import Header from "../components/PageHeading"
-import Link from "../components/Link"
-import Alert from "../components/Alert"
-import { displayTimeString, timestampToDayMonthYear } from "../utils/formatTime"
-import { harperDeleteTask } from "../utils/harperdb/deleteTask"
+import { UserContext } from "../contexts/UserContext";
+import { TasksContext } from "../contexts/TasksContext";
+import Header from "../components/PageHeading";
+import Link from "../components/Link";
+import Alert from "../components/Alert";
+import {
+  displayTimeString,
+  timestampToDayMonthYear
+} from "../utils/formatTime";
+import { harperDeleteTask } from "../utils/harperdb/deleteTask";
 
 const Stats: NextPage = () => {
-  const [errorMessage, setErrorMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const { username } = useContext(UserContext)
-  const { tasks, getAndSetTasks } = useContext(TasksContext)
+  const { username } = useContext(UserContext);
+  const { tasks, getAndSetTasks } = useContext(TasksContext);
 
   const handleDeleteRow = async (taskId: string) => {
-    setErrorMessage("")
-    const areYouSure = confirm("Are you sure you want to delete this row?")
-    if (!areYouSure) return
+    setErrorMessage("");
+    const areYouSure = confirm("Are you sure you want to delete this row?");
+    if (!areYouSure) return;
 
     try {
       // Delete task from db
-      const { response } = await harperDeleteTask(taskId)
+      const { response } = await harperDeleteTask(taskId);
       if (response.status === 200) {
         // Get tasks from db and setTasks
-        getAndSetTasks(username)
-        return
+        getAndSetTasks(username);
+        return;
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-    setErrorMessage("Whoops, something went wrong :(")
-  }
+    setErrorMessage("Whoops, something went wrong :(");
+  };
 
   return (
     <div className="container mx-auto">
@@ -70,7 +73,7 @@ const Stats: NextPage = () => {
           </thead>
           <tbody>
             {tasks.length > 0 &&
-              tasks.map(task => (
+              tasks.map((task) => (
                 <tr key={task.id}>
                   <td>{task.task_name}</td>
                   <td>{displayTimeString(task.time_in_seconds)}</td>
@@ -90,20 +93,20 @@ const Stats: NextPage = () => {
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const TH: React.FC<{ children: string }> = ({ children }) => {
-  const classes = "border border-slate-300 rounded-top p-4"
-  return <th className={classes}>{children}</th>
-}
+  const classes = "border border-slate-300 rounded-top p-4";
+  return <th className={classes}>{children}</th>;
+};
 
 interface TDProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 const TD = ({ children }: TDProps) => {
-  const classes = "border border-slate-300 p-4"
-  return <td className={classes}>{children}</td>
-}
+  const classes = "border border-slate-300 p-4";
+  return <td className={classes}>{children}</td>;
+};
 
-export default Stats
+export default Stats;

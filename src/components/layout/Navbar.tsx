@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <header className="navbar bg-neutral">
       <h2 className="flex-1">
-        <Link href={`${username ? '/dashboard' : '/'}`}>
+        <Link href={`${username ? "/dashboard" : "/"}`}>
           <a className="btn btn-ghost normal-case text-xl">{SITE_TITLE}</a>
         </Link>
       </h2>
