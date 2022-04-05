@@ -53,6 +53,10 @@ export interface TaskBarProps {
   pauseTimer: () => void;
 }
 
+export interface StatsTableProps {
+  setSelectedTaskId: React.Dispatch<React.SetStateAction<string>>;
+}
+
 export interface InputProps {
   inputType: "text" | "email" | "password";
   inputName: string;

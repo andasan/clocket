@@ -1,16 +1,24 @@
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import { useRouter } from 'next/router'
+
+import Navbar from "./Navbar"
+import Footer from "./Footer"
 
 const Layout: React.FC = ({ children }) => {
+  const router = useRouter()
+
+  const backgroundStyle = {
+    backgroundImage: router.pathname === '/' ? `url('/pattern.svg')` : ''
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex flex-col grow">{children}</main>
+      <main className="flex flex-col grow" style={backgroundStyle}>{children}</main>
       <div className="mt-auto">
         <Footer />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

@@ -8,8 +8,10 @@ export const LabelAndInput: React.FC<LabelAndInputProps> = ({
   value
 }) => {
   return (
-    <div className="flex flex-col mb-2">
-      <label htmlFor="name">{label}</label>
+    <div className="flex flex-col mb-2 form-control">
+      <label className="label" htmlFor="name">
+        {label}
+      </label>
       <Input
         inputType={inputType}
         inputName={inputName}
@@ -28,7 +30,7 @@ export const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <input
-      className="px-3 py-2 border-gray-200 border-2 rounded"
+      className="input input-bordered"
       type={inputType}
       name={inputName}
       id={inputName}

@@ -23,10 +23,10 @@ const Navbar = () => {
       <div className="flex-none gap-5">
         {username ? (
           <>
-            <ul className="menu menu-horizontal p-1">
+            {/* <ul className="menu menu-horizontal p-1">
               <NavLink href="/dashboard">Timer</NavLink>
               <NavLink href="/stats">Stats</NavLink>
-            </ul>
+            </ul> */}
             <div className="navbar-end">
               <button
                 onClick={handleLogout}

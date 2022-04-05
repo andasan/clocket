@@ -47,7 +47,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form className="w-full sm:w-96" onSubmit={handleSubmit}>
+    <form className="w-full sm:w-96 card-body" onSubmit={handleSubmit}>
       <LabelAndInput
         label="Username"
         inputType="text"
@@ -62,7 +62,7 @@ const LoginForm = () => {
         handleChange={(e) => setPassword(e.target.value)}
         value={password}
       />
-      <Button color="success" extraClasses="w-full mt-3 py-3 font-semibold">
+      <Button color="primary" extraClasses="w-full mt-3 py-3 font-semibold">
         Login
       </Button>
 
